@@ -1,15 +1,16 @@
 from flask import Flask
 import logging
+from db_conn import get_db
 
+app = Flask(__name__)
 
-def create_app():
-    app = Flask(__name__)
-    return app
-
+@app.route('/testdb')
+def testdb():
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('SELECT * FROM my_table')
+    results = cur.fetchall()
+    return str(results)
 
 if __name__ == '__main__':
-
-    app = create_app()
-    logger = logging.getLogger(__name__)
-
-    app.run(host="0.0.0.0", debug=True)
+    app.run(port=2137, debug=True)
