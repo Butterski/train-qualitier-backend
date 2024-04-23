@@ -22,7 +22,7 @@ class SensorThread(threading.Thread):
 
     def run(self):
         start_time = time.time()
-        while not self._stop_event.is_set():
+        while not self._stop_event.is_set() and not self._pause_event.is_set():
             if time.time() - start_time > 3600:
                 self.stop()
             if not self._pause_event.is_set():
@@ -33,11 +33,11 @@ class SensorThread(threading.Thread):
 def mock_sensor(measurement_id):
     # timestamp = "CURRENT_TIMESTAMP"
     timestamp = time.time()
-    x_axis = random.uniform(0.0, 2.0)
-    y_axis = random.uniform(0.0, 2.0)
-    z_axis = random.uniform(0.0, 2.0)
-    temperature = random.uniform(10.0, 30.0)
-    magnetometer = random.uniform(0.0, 100.0)
+    x_axis = round(random.uniform(0.0, 2.0), 4)
+    y_axis = round(random.uniform(0.0, 2.0), 4)
+    z_axis = round(random.uniform(0.0, 2.0), 4)
+    temperature =round(random.uniform(10.0, 30.0), 2)
+    magnetometer = round(random.uniform(0.0, 100.0), 4)
 
     conn = sqlite3.connect("database/database.sqlite")
     cursor = conn.cursor()
