@@ -33,9 +33,9 @@ class SensorThread(threading.Thread):
 def mock_sensor(measurement_id):
     # timestamp = "CURRENT_TIMESTAMP"
     timestamp = time.time()
-    x_axis = random.uniform(0.0, 10.0)
-    y_axis = random.uniform(0.0, 10.0)
-    z_axis = random.uniform(0.0, 10.0)
+    x_axis = random.uniform(0.0, 2.0)
+    y_axis = random.uniform(0.0, 2.0)
+    z_axis = random.uniform(0.0, 2.0)
     temperature = random.uniform(10.0, 30.0)
     magnetometer = random.uniform(0.0, 100.0)
 
