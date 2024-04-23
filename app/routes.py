@@ -14,14 +14,14 @@ def testdb():
     return results
 
 
-@app.route("/create_measurement/<measurement_name>")
+@app.route("/measurement/create/<measurement_name>")
 def create_measurement(measurement_name):
     measurement_id = initialize_database(measurement_name, "")
 
     return {"measurement_id": measurement_id, "measurement_name": measurement_name}
 
 
-@app.route("/start_measurement/<int:measurement_id>")
+@app.route("/measurement/start/<int:measurement_id>")
 def start_measurement(measurement_id):
     if (
         measurement_id not in sensor_threads
@@ -40,7 +40,7 @@ def start_measurement(measurement_id):
         }
 
 
-@app.route("/stop_measurement/<int:measurement_id>")
+@app.route("/measurement/stop/<int:measurement_id>")
 def stop_measurement(measurement_id):
     if measurement_id in sensor_threads and sensor_threads[measurement_id].is_alive():
         sensor_threads[measurement_id].stop()
@@ -57,7 +57,7 @@ def stop_measurement(measurement_id):
         }
 
 
-@app.route("/pause_measurement/<int:measurement_id>")
+@app.route("/measurement/pause/<int:measurement_id>")
 def pause_measurement(measurement_id):
     if measurement_id in sensor_threads and sensor_threads[measurement_id].is_alive():
         sensor_threads[measurement_id].pause()
@@ -69,7 +69,7 @@ def pause_measurement(measurement_id):
         }
 
 
-@app.route("/resume_measurement/<int:measurement_id>")
+@app.route("/measurement/<int:measurement_id>")
 def resume_measurement(measurement_id):
     if measurement_id in sensor_threads and sensor_threads[measurement_id].is_alive():
         sensor_threads[measurement_id].resume()
@@ -84,7 +84,7 @@ def resume_measurement(measurement_id):
         }
 
 
-@app.route("/get_measurement_LOG/<measurement_id>")
+@app.route("/get_measurement_log/<measurement_id>")
 def get_measurement_log(measurement_id):
     db = get_db_conn()
     cur = db.cursor()
