@@ -127,3 +127,7 @@ def change_measurement_name(measurement_id, new_name):
         "status": "success",
         "message": f"Measurement {measurement_id} name changed to {new_name}.",
     })
+
+@app.route("/measurements/runnings")
+def get_running_measurements_id():
+    return jsonify([k for k, v in sensor_threads.items() if v.is_alive()])
