@@ -27,7 +27,7 @@ class SensorThread(threading.Thread):
                 self.stop()
             if not self._pause_event.is_set():
                 mock_sensor(self.measurement_id)
-            time.sleep(0.1)
+            time.sleep(0.5)
 
 
 def mock_sensor(measurement_id):
