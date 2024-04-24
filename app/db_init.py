@@ -17,7 +17,8 @@ def initialize_database(measurement_name, measurement_grade):
         CREATE TABLE IF NOT EXISTS measurements_data (
             id INTEGER PRIMARY KEY,
             measurement_name TEXT,
-            measurement_grade TEXT
+            measurement_grade TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """
     )
