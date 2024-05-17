@@ -1,7 +1,8 @@
 from app import app, get_db_conn
 from app.db_init import initialize_database
-from .scripts.mock_sensor import SensorThread
+from .scripts.get_sensor_data import SensorThread
 from flask import jsonify
+import json
 
 sensor_threads = {}
 
@@ -133,6 +134,13 @@ def get_measurement_data(measurement_id):
     cur = db.cursor()
     cur.execute(f"SELECT * FROM measurement_{measurement_id}")
     results = cur.fetchall()
+    return jsonify(results)
+
+
+@app.route("/get_mocked_measurement")
+def get_mocked_measurement():
+    with open("app/scripts/mock_data.json", "r") as f:
+        results = json.load(f)
     return jsonify(results)
 
 
