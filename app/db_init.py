@@ -36,9 +36,15 @@ def initialize_database(measurement_name, measurement_grade):
         f"""
         CREATE TABLE IF NOT EXISTS measurement_{measurement_id} (
             timestamp TIMESTAMP,
-            x_axis REAL,
-            y_axis REAL,
-            z_axis REAL,
+            gyro_x REAL,
+            gyro_y REAL,
+            gyro_z REAL,
+            acceleratior_x REAL,
+            acceleratior_y REAL,
+            acceleration_z REAL,
+            magnetometer_x REAL,
+            magnetometer_y REAL,
+            magnetometer_z REAL,
             temperature REAL,
             magnetometer REAL
         )
