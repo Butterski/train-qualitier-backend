@@ -4,7 +4,6 @@ import adafruit_icm20x
 import sqlite3
 import threading
 import time
-import random
 
 
 class SensorThread(threading.Thread):
