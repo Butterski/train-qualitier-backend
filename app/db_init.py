@@ -46,7 +46,7 @@ def initialize_database(measurement_name, measurement_grade):
             magnetometer_y REAL,
             magnetometer_z REAL,
             temperature REAL,
-            magnetometer REAL
+            humidity REAL
         )
     """
     )
