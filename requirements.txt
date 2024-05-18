@@ -3,4 +3,3 @@ flask_cors
 board
 adafruit-circuitpython-ahtx0
 adafruit-circuitpython-icm20x
-sqlite3
