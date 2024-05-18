@@ -39,11 +39,7 @@ def add_sensor_data(measurement_id):
     sensor_data = get_sensor_data()
     
     cursor.execute(
-        f"INSERT INTO measurement_{measurement_id} VALUES ({timestamp},
-        {sensor_data['acceleration']['x']}, {sensor_data['acceleration']['y']}, {sensor_data['acceleration']['z']},
-        {sensor_data['gyro']['x']}, {sensor_data['gyro']['y']}, {sensor_data['gyro']['z']},
-        {sensor_data['magnetometer']['x']}, {sensor_data['magnetometer']['y']}, {sensor_data['magnetometer']['z']},
-        {sensor_data['temperature']}, {sensor_data['humidity']})
+        f"INSERT INTO measurement_{measurement_id} VALUES ({timestamp}, {sensor_data['acceleration']['x']}, {sensor_data['acceleration']['y']}, {sensor_data['acceleration']['z']}, {sensor_data['gyro']['x']}, {sensor_data['gyro']['y']}, {sensor_data['gyro']['z']}, {sensor_data['magnetometer']['x']}, {sensor_data['magnetometer']['y']}, {sensor_data['magnetometer']['z']}, {sensor_data['temperature']}, {sensor_data['humidity']})
         "
     )
     conn.commit()
