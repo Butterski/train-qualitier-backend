@@ -1,14 +1,8 @@
 import sqlite3
-import os
 
 
 def initialize_database(measurement_name, measurement_grade):
-    db_dir = "./database"
-    db_file = os.path.join(db_dir, "database.sqlite")
-    os.makedirs(db_dir, exist_ok=True)  # Create directory if it does not exist
-    if not os.path.exists(db_file):
-        open(db_file, "w").close()
-
+    db_file = "./database/database.sqlite"
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
 
