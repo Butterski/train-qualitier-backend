@@ -1,6 +1,6 @@
 from app import app, get_db_conn
 from app.db_init import initialize_database
-from .scripts.get_sensor_data import SensorThread
+from .scripts.mock_sensor import SensorThread
 from flask import jsonify
 import json
 
@@ -98,7 +98,7 @@ def pause_measurement(measurement_id):
         )
 
 
-@app.route("/api/measurement/<int:measurement_id>")
+@app.route("/api/measurement/resume/<int:measurement_id>")
 def resume_measurement(measurement_id):
     if measurement_id in sensor_threads and sensor_threads[measurement_id].is_alive():
         sensor_threads[measurement_id].resume()
@@ -200,5 +200,21 @@ def is_measurement_running(measurement_id):
             and sensor_threads[measurement_id].is_alive(),
             "measurement_id": measurement_id,
             "measurement_name": measurement_name,
+        }
+    )
+
+@app.route("/api/measurements/info/<int:measurement_id>")
+def get_measurement_name(measurement_id):
+    db = get_db_conn()
+    cur = db.cursor()
+    cur.execute(
+        f"SELECT measurement_name, created_at FROM measurements_data WHERE id = {measurement_id}"
+    )
+    results = cur.fetchone()
+    return jsonify(
+        {
+            "measurement_id": measurement_id,
+            "measurement_name": results[0],
+            "created_at": results[1],
         }
     )
