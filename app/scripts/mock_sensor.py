@@ -42,8 +42,8 @@ def mock_sensor(measurement_id):
     conn = sqlite3.connect("database/database.sqlite")
     cursor = conn.cursor()
     cursor.execute(
-        f"INSERT INTO measurement_{measurement_id} VALUES ({timestamp}, ?, ?, ?, ?, ?)",
-        (x_axis, y_axis, z_axis, temperature, magnetometer),
+        f"INSERT INTO measurement_{measurement_id} VALUES ({timestamp}, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (x_axis, y_axis, z_axis, temperature, magnetometer, x_axis, y_axis, z_axis, z_axis,  y_axis, z_axis),
     )
     conn.commit()
     conn.close()
